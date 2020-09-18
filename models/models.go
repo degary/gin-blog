@@ -2,10 +2,10 @@ package models
 
 import (
 	"fmt"
+	"gin-blog/pkg/logging"
 	"gin-blog/pkg/setting"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"log"
 )
 
 var db *gorm.DB
@@ -24,7 +24,7 @@ func init() {
 
 	sec, err := setting.Cfg.GetSection("database")
 	if err != nil {
-		log.Fatal(2, "Fail to get section 'database': %v", err)
+		logging.Fatal(2, "Fail to get section 'database': %v", err)
 	}
 
 	dbType = sec.Key("TYPE").String()
@@ -40,7 +40,7 @@ func init() {
 		host,
 		dbName))
 	if err != nil {
-		log.Println(err)
+		logging.Error(err)
 	}
 
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
