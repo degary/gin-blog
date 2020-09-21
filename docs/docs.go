@@ -25,6 +25,20 @@ var doc = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/api/v1/tags": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "获取文章标签",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "post": {
                 "produces": [
                     "application/json"
@@ -77,7 +91,7 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "description": "ID",
+                        "description": "Name",
                         "name": "name",
                         "in": "query",
                         "required": true
@@ -93,6 +107,29 @@ var doc = `{
                         "description": "ModifiedBy",
                         "name": "modified_by",
                         "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "删除文章标签",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
                         "required": true
                     }
                 ],
